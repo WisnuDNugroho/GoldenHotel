@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Golden Chariot Hotel</title>
+</head>
+<body>
+<header th:fragment="header">
+    <div th:text="|Welcome ${#authentication.principal.role}, ${#authentication.principal.username}|"></div>
+    <div>
+        <form th:attr="action=@{/logout}" method="POST">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</header>
+<nav th:fragment="nav">
+    <div th:if="${#authentication.principal.role == 'Super Admin'}">
+        <a th:href="@{/admin/index}">Admin</a>
+        <a th:href="@{/customer/index}">Customer</a>
+        <a th:href="@{/room/index}">Room</a>
+        <a href="">Reservation</a>
+    </div>
+    <div th:if="${#authentication.principal.role == 'Admin'}">
+        <a th:href="@{/customer/index}">Customer</a>
+        <a th:href="@{/room/index}">Room</a>
+        <a href="">Reservation</a>
+        <a href="">Change My Profile</a>
+    </div>
+    <div th:if="${#authentication.principal.role == 'Customer'}">
+        <a href="">Vacant Rooms</a>
+        <a href="">My Reservation</a>
+        <a href="">My Transactions</a>
+        <a href="">Change My Profile</a>
+    </div>
+</nav>
+<main></main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head}"></head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<nav th:replace="~{layout :: nav}"></nav>
+<main>
+    <form method="get" th:attr="action=@{/customer/index}">
+        <input type="text" name="fullName" placeholder="Search Customer Name..." th:attr="value=${customerName}">
+        <button type="submit">Search</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Address</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="content : ${listDto}" th:object="${content}">
+            <td th:text="*{fullName}"></td>
+            <td th:text="*{email}"></td>
+            <td th:text="*{address}"></td>
+            <td>
+                <a th:href="@{/customer/transactionHistory(username=*{username})}">Transaction History</a>
+                <a onclick="return confirm('Apakah Anda Yakin Untuk Menghapus Data?');" th:href="@{/customer/delete(username=*{username})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">
+                <div>
+                    <div th:text="|page ${currentPage} of ${totalPage}|"></div>
+                    <div>
+                        <a th:if="${totalPage != 0}"
+                           th:each="loop : ${#numbers.sequence(1, totalPage)}"
+                           th:href="@{/customer/index(page=${loop})}"
+                           th:text="${loop}"
+                        >
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</main>
+</body>
+</html>

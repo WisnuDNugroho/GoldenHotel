@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head}"></head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<nav th:replace="~{layout :: nav}"></nav>
+<main>
+    <p th:text="|Transaction History of ${fullName}|"></p>
+    <table>
+        <thead>
+        <tr>
+            <td>Transaction ID</td>
+            <td>Check In Date</td>
+            <td>Check Out Date</td>
+            <td>Room Number</td>
+            <td>Cost</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="content : ${listDto}" th:object="${content}">
+            <td th:text="*{transactionID}"></td>
+            <td th:text="*{checkIn}"></td>
+            <td th:text="*{checkOut}"></td>
+            <td th:text="*{roomNumber}"></td>
+            <td th:text="*{cost}"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">
+                <div>
+                    <div th:text="|page ${currentPage} of ${totalPage}|"></div>
+                    <div>
+                        <a th:if="${totalPage != 0}"
+                           th:each="loop : ${#numbers.sequence(1, totalPage)}"
+                           th:href="@{/customer/index(page=${loop})}"
+                           th:text="${loop}"
+                        >
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</main>
+</body>
+</html>

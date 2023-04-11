@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head}"></head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<nav th:replace="~{layout :: nav}"></nav>
+<main>
+    <p th:text="|Tidak bisa menghapus data ${fullName}, dikarenakan ada data Reservation atau Transaction yang terdapat pada aplikasi ini|"></p>
+    <p th:text="|Data customer yang bisa dihapus hanyalah data customer tanpa data transaksi|"></p>
+</main>
+</body>
+</html>

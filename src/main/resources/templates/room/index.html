@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head}"></head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<nav th:replace="~{layout :: nav}"></nav>
+<main>
+    <form method="get" th:attr="action=@{/room/index}">
+        <input type="text" name="roomNumber" placeholder="Search Room Number..." th:attr="value=${roomNumber}">
+        <button type="submit">Search</button>
+    </form>
+    <a th:href="@{/room/upsert}">Add New Room</a>
+    <table>
+        <thead>
+        <tr>
+            <td>Number</td>
+            <td>Type</td>
+            <td>Price Per Day</td>
+            <td>Status</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="content : ${listDto}" th:object="${content}">
+            <td th:text="*{roomNumber}"></td>
+            <td th:text="*{roomType}"></td>
+            <td th:text="*{roomPrice}"></td>
+            <td th:text="*{roomStatus}"></td>
+            <td th:if="*{roomStatus == 'Vacant'}">
+                <a th:href="@{/room/upsert(roomNumber=*{roomNumber})}">Edit</a>
+                <a onclick="return confirm('Apakah Anda Yakin Untuk Menghapus Data?');" th:href="@{/room/delete(roomNumber=*{roomNumber})}">Delete</a>
+            </td>
+            <td th:unless="*{roomStatus == 'Vacant'}">
+                <a th:href="@{/room/currentReservation(roomNumber=*{roomNumber})}">Current Reservation</a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5">
+                <div>
+                    <div th:text="|page ${currentPage} of ${totalPage}|"></div>
+                    <div>
+                        <a th:if="${totalPage != 0}"
+                           th:each="loop : ${#numbers.sequence(1, totalPage)}"
+                           th:href="@{/room/index(page=${loop})}"
+                           th:text="${loop}"
+                        >
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</main>
+</body>
+</html>

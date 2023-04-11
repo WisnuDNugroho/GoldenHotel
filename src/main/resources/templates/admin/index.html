@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head}"></head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<nav th:replace="~{layout :: nav}"></nav>
+<main>
+    <a th:href="@{/admin/insert}">Add New Admin</a>
+    <table>
+        <thead>
+        <tr>
+            <td>Username</td>
+            <td>Job Title</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="content : ${listDto}" th:object="${content}">
+            <td th:text="*{username}"></td>
+            <td th:text="*{jobTitle}"></td>
+            <td>
+                <a onclick="return confirm('Apakah Anda Yakin Untuk Menghapus Data?');" th:href="@{/admin/delete(username=*{username})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <div>
+                    <div th:text="|page ${currentPage} of ${totalPage}|"></div>
+                    <div>
+                        <a th:if="${totalPage != 0}"
+                           th:each="loop : ${#numbers.sequence(1, totalPage)}"
+                           th:href="@{/admin/index(page=${loop})}"
+                           th:text="${loop}"
+                        >
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</main>
+</body>
+</html>

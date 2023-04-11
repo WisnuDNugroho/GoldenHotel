@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head}"></head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<nav th:replace="~{layout :: nav}"></nav>
+<main>
+    <p th:text="|Room tidak dapat dihapus, dikarenakan adanya data reservasi atau histori transaksi yang terhubung dengan room ini.|"></p>
+    <p th:text="|Anda hanya dapat menghapus room yang tidak memiliki histori reservasi|"></p>
+</main>
+</body>
+</html>
