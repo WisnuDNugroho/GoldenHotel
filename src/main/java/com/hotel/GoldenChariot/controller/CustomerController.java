@@ -3,10 +3,18 @@ package com.hotel.GoldenChariot.controller;
 import com.hotel.GoldenChariot.dto.customer.CustomerRegisterDto;
 import com.hotel.GoldenChariot.service.admin.AdminService;
 import com.hotel.GoldenChariot.service.customer.CustomerService;
+
+import ch.qos.logback.core.joran.conditional.ElseAction;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -71,5 +79,19 @@ public class CustomerController {
     public String regsiter(Model model){
         model.addAttribute("dto", new CustomerRegisterDto());
         return "customer/register";
+    }
+
+    @PostMapping("/register")
+    public String register(@Valid @ModelAttribute("dot") CustomerRegisterDto dto,
+                            BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("dto", dto);
+            return "customer/register";
+        }
+        else {
+            customerService.register(dto);
+            return "";
+        }
     }
 }
