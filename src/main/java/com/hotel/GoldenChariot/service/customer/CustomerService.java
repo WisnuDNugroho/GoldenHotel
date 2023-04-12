@@ -1,6 +1,7 @@
 package com.hotel.GoldenChariot.service.customer;
 
 import com.hotel.GoldenChariot.dto.customer.CustomerDto;
+import com.hotel.GoldenChariot.dto.customer.CustomerRegisterDto;
 import com.hotel.GoldenChariot.dto.login.LoginDto;
 import com.hotel.GoldenChariot.dto.reservation.DetailReservationDto;
 
@@ -14,4 +15,6 @@ public interface CustomerService {
     public Long getCountTransaction(String username);
     public String getFullName(String username);
     public boolean checkDependency(String username);
+
+    public void register(CustomerRegisterDto dto);
 }
