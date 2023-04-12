@@ -3,11 +3,15 @@ package com.hotel.GoldenChariot.service.customer;
 import com.hotel.GoldenChariot.dao.CustomerRepository;
 import com.hotel.GoldenChariot.dao.ReservationRepository;
 import com.hotel.GoldenChariot.dto.customer.CustomerDto;
+import com.hotel.GoldenChariot.dto.customer.CustomerRegisterDto;
 import com.hotel.GoldenChariot.dto.login.LoginDto;
 import com.hotel.GoldenChariot.dto.reservation.DetailReservationDto;
+import com.hotel.GoldenChariot.entity.Customer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +24,9 @@ public class CustomerServiceImplementation implements CustomerService{
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public LoginDto getDataCustomer(String username) {
@@ -69,5 +76,13 @@ public class CustomerServiceImplementation implements CustomerService{
             customerRepository.deleteById(username);
             return true;
         }
+    }
+
+    @Override
+    public void register(CustomerRegisterDto dto) {
+        String encoderPassword = passwordEncoder.encode(dto.getPassword());
+        Customer customer = new Customer(dto.getUsername(), encoderPassword, dto.getFullname(),
+                                        dto.getEmail(), dto.getAddress());
+        customerRepository.save(customer);
     }
 }
