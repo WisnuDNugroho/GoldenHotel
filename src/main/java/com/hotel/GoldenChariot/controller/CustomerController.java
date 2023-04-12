@@ -1,5 +1,6 @@
 package com.hotel.GoldenChariot.controller;
 
+import com.hotel.GoldenChariot.dto.customer.CustomerRegisterDto;
 import com.hotel.GoldenChariot.service.admin.AdminService;
 import com.hotel.GoldenChariot.service.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,11 @@ public class CustomerController {
             model.addAttribute("fullName", customerService.getFullName(username));
             return "/customer/failDelete";
         }
+    }
+
+    @GetMapping("/regsiter")
+    public String regsiter(Model model){
+        model.addAttribute("dto", new CustomerRegisterDto());
+        return "customer/register";
     }
 }
