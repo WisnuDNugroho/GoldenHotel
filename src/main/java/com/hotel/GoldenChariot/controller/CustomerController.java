@@ -75,23 +75,4 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/regsiter")
-    public String regsiter(Model model){
-        model.addAttribute("dto", new CustomerRegisterDto());
-        return "customer/register";
-    }
-
-    @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("dot") CustomerRegisterDto dto,
-                            BindingResult bindingResult, Model model){
-
-        if(bindingResult.hasErrors()){
-            model.addAttribute("dto", dto);
-            return "customer/register";
-        }
-        else {
-            customerService.register(dto);
-            return "";
-        }
-    }
 }
