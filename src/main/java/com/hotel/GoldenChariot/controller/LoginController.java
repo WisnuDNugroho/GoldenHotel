@@ -1,5 +1,6 @@
 package com.hotel.GoldenChariot.controller;
 
+import com.hotel.GoldenChariot.dto.customer.CustomerRegisterDto;
 import com.hotel.GoldenChariot.dto.login.LoginDto;
 import com.hotel.GoldenChariot.service.admin.AdminService;
 import com.hotel.GoldenChariot.service.customer.CustomerService;
@@ -9,12 +10,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/login")
@@ -48,6 +53,26 @@ public class LoginController {
             }
         } else {
             return "redirect:/home/customer";
+        }
+    }
+
+    @GetMapping("/register")
+    public String regsiter(Model model){
+        model.addAttribute("dto", new CustomerRegisterDto());
+        return "customer/register";
+    }
+
+    @PostMapping("/register")
+    public String register(@Valid @ModelAttribute("dot") CustomerRegisterDto dto,
+                            BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("dto", dto);
+            return "login/register";
+        }
+        else {
+            customerService.register(dto);
+            return "redirect:/login/loginForm";
         }
     }
 }
