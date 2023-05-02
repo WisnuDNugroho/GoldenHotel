@@ -25,7 +25,7 @@ public class AdminController {
         long totalPage = adminService.getCountPage();
         if (totalPage == 0) {
             page = 1;
-            totalPage = 1;
+            totalPage = 1;  
         }
 
         model.addAttribute("currentPage", page);
