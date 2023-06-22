@@ -1,5 +1,6 @@
 package com.hotel.GoldenChariot.controller;
 
+//import com.hotel.GoldenChariot.dto.admin.AdminInsertDto;
 import com.hotel.GoldenChariot.dto.admin.AdminInsertDto;
 import com.hotel.GoldenChariot.dto.login.LoginDto;
 import com.hotel.GoldenChariot.service.admin.AdminService;
@@ -25,7 +26,7 @@ public class AdminController {
         long totalPage = adminService.getCountPage();
         if (totalPage == 0) {
             page = 1;
-            totalPage = 1;
+            totalPage = 1;  
         }
 
         model.addAttribute("currentPage", page);
