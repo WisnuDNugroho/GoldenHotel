@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @Getter
 @Setter
-@ConfirmPassword(password = "password", confirmPassword = "confirmPassword", message = "Tolong periksa kembali password anda")
+@ConfirmPassword(password = "password", confirmPassword = "passwordConfirm", message = "Tolong periksa kembali password anda")
 public class AdminInsertDto {
     private String username;
     private String jobTitle;
