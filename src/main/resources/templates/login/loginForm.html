@@ -39,6 +39,7 @@
               <div class="form-group mb-5">
                 <label for="dropdown">Login As:</label>
                 <select class="form-control" id="dropdown" name="role">
+                  <option value=""> ----- Select Role ----- </option>
                   <option th:each="option : ${listRole}"
                           th:value="${option.stringValue}"
                           th:text="${option.text}"></option>

@@ -5,10 +5,10 @@
 <header th:replace="~{layout :: header}"></header>
 <nav th:replace="~{layout :: nav}"></nav>
 <main>
-    <a th:href="@{/admin/insert}">Add New Admin</a>
-    <table>
+    <a class="add-button" th:href="@{/admin/insert}">Add New Admin</a>
+    <table class="table">
         <thead>
-        <tr>
+        <tr style="padding-top: 15px; padding-bottom: 15px;">
             <td>Username</td>
             <td>Job Title</td>
             <td>Action</td>
@@ -19,7 +19,7 @@
             <td th:text="*{username}"></td>
             <td th:text="*{jobTitle}"></td>
             <td>
-                <a onclick="return confirm('Apakah Anda Yakin Untuk Menghapus Data?');" th:href="@{/admin/delete(username=*{username})}">Delete</a>
+                <a class="action-button" onclick="return confirm('Apakah Anda Yakin Untuk Menghapus Data?');" th:href="@{/admin/delete(username=*{username})}">Delete</a>
             </td>
         </tr>
         </tbody>

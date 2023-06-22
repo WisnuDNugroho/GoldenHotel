@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 @Setter
 @Entity
 @Table(name = "Customer")
