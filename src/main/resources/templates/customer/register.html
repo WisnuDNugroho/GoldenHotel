@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Golden Chariot Hotel</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>Register Akun</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
   <body>
-    <main>
-      <h1>Register As Customer</h1>
-      <form method="post" enctype="multipart/form-data" th:object="${dto}">
-        <input
-          type="hidden"
-          th:name="${_csrf.parameterName}"
-          th:value="${_csrf.token}"
-        />
-        <div>
-          <input
-            type="text"
-            th:field="*{username}"
-            placeholder="Username..."
-            autocomplete="off"
-          />
-          <div th:errors="*{username}"></div>
-        </div>
 
-        <div>
-          <input
-            type="text"
-            th:field="*{fullname}"
-            placeholder="Full Name..."
-            autocomplete="off"
-          />
-          <div th:errors="*{fullname}"></div>
-        </div>
 
-        <div>
-          <input
-            type="text"
-            th:field="*{email}"
-            placeholder="E-mail..."
-            autocomplete="off"
-          />
-          <div th:errors="*{email}"></div>
-        </div>
+<!--    <main>-->
+<!--      <h1>Register As Customer</h1>-->
+<!--      <form method="post" enctype="multipart/form-data" th:object="${dto}">-->
+<!--        <input-->
+<!--          type="hidden"-->
+<!--          th:name="${_csrf.parameterName}"-->
+<!--          th:value="${_csrf.token}"-->
+<!--        />-->
+<!--        <div>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            th:field="*{username}"-->
+<!--            placeholder="Username..."-->
+<!--            autocomplete="off"-->
+<!--          />-->
+<!--          <div th:errors="*{username}"></div>-->
+<!--        </div>-->
 
-        <div>
-          <textarea
-            placeholder="Address"
-            th:field="*{address}"
-            autocomplete="off"
-            cols="30"
-            rows="10"
-          ></textarea>
-          <div th:errors="*{address}"></div>
-        </div>
+<!--        <div>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            th:field="*{fullname}"-->
+<!--            placeholder="Full Name..."-->
+<!--            autocomplete="off"-->
+<!--          />-->
+<!--          <div th:errors="*{fullname}"></div>-->
+<!--        </div>-->
 
-        <div>
-          <input
-            type="password"
-            th:field="*{password}"
-            placeholder="Password..."
-            autocomplete=""
-          />
-          <div th:errros="*{password}"></div>
-        </div>
+<!--        <div>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            th:field="*{email}"-->
+<!--            placeholder="E-mail..."-->
+<!--            autocomplete="off"-->
+<!--          />-->
+<!--          <div th:errors="*{email}"></div>-->
+<!--        </div>-->
 
-        <button type="submit">Sign Up</button>
-      </form>
-      <div>
-        <p>Do you already have an account?</p>
-        <a th:href="@{/login/loginForm}">Click here!</a>
-      </div>
-    </main>
+<!--        <div>-->
+<!--          <textarea-->
+<!--            placeholder="Address"-->
+<!--            th:field="*{address}"-->
+<!--            autocomplete="off"-->
+<!--            cols="30"-->
+<!--            rows="10"-->
+<!--          ></textarea>-->
+<!--          <div th:errors="*{address}"></div>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <input-->
+<!--            type="password"-->
+<!--            th:field="*{password}"-->
+<!--            placeholder="Password..."-->
+<!--            autocomplete=""-->
+<!--          />-->
+<!--          <div th:errros="*{password}"></div>-->
+<!--        </div>-->
+
+<!--        <button type="submit">Sign Up</button>-->
+<!--      </form>-->
+<!--      <div>-->
+<!--        <p>Do you already have an account?</p>-->
+<!--        <a th:href="@{/login/loginForm}">Click here!</a>-->
+<!--      </div>-->
+<!--    </main>-->
   </body>
 </html>
